@@ -1,63 +1,14 @@
 # Anna Chubaeva ac3807
 
-import random
-from random import randint
-import math
+
 from matplotlib import pyplot as plt
-
-def normpdf(x, mean, sd):
-    """
-    Return the value of the normal distribution 
-    with the specified mean and standard deviation (sd) at
-    position x.
-    You do not have to understand how this function works exactly. 
-    """
-    var = float(sd)**2
-    denom = (2*math.pi*var)**.5
-    num = math.exp(-(float(x)-float(mean))**2/(2*var))
-    return num/denom
-
-def pdeath(x, mean, sd):
-    start = x-0.5
-    end = x+0.5
-    step =0.01    
-    integral = 0.0
-    while start<=end:
-        integral += step * (normpdf(start,mean,sd) + normpdf(start+step,mean,sd)) / 2
-        start += step            
-    return integral    
+from cell import Cell
+   
     
 recovery_time = 4 # recovery time in time-steps
 virality = 0.2    # probability that a neighbor cell is infected in 
                   # each time step                                                  
 
-class Cell(object):
-
-    def __init__(self,x, y):
-        # x and y and strings
-        self.x = x
-        self.y = y 
-        self.state = "S" # can be "S" (susceptible), "R" (resistant = dead), or "I" (infected)
-        self.time_infected = 0               
-        
-    def infect(self):
-        self.state = "I"
-        self.time_infected += 1
-    
-    def process(self, adjacent_cells):
-        
-        if self.time_infected == recovery_time:
-            self.state = "S"
-            self.time_infected = 0
-        if self.state == "I":
-            if random.random() <= pdeath(self.time_infected, 3, 1):
-                self.state = "R"
-            for i in adjacent_cells:   
-                if (i != None) and i.state == "S":
-                    if random.random() <= virality:
-                        i.infect()    
-        else:
-            pass
 
 class Map(object):
  
@@ -121,7 +72,7 @@ class Map(object):
     def time_step(self):
         d = self.cells
         for c in d:
-            d[c].process(self.adjacent_cells(d[c].x, d[c].y))
+            d[c].process(self.adjacent_cells(d[c].x, d[c].y), recovery_time, virality)
         self.display()
           
 def read_map(filename):
