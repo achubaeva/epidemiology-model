@@ -14,3 +14,5 @@ When a cell is infected, it has the potential to infect neighboring cells, it mi
 Time is measured in discrete steps. After a number of steps, the disease will have spread and infected a number of cells. Some may have recovered and others may have died. The map might look something like this: 
 
 ![Image](simulation_map.png)
+
+You can change the virality, recovery time of a cell, and length of time passed for the disease to spread.
