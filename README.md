@@ -1,7 +1,7 @@
 # epidemiology-model-prj
-This model simulates the spread of the disease on a map of New York City. Our map is a 150x150 grid.
 
-THe model is based on the so-called SRI model. At any time step, each cell on the map can be in one of three states: 
+This model simulates the spread of the disease on a map of New York City. Our map is a 150x150 grid.
+The model is based on the so-called SRI model. At any time step, each cell on the map can be in one of three states: 
 
 S (susceptible): The cell is healthy and not infected. Displayed green on the map. 
 R (resistant): The cell cannot be infected (in our case, that means the cell is dead). Displayed gray on the map. 
