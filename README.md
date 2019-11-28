@@ -1,4 +1,4 @@
-# epidemiology-model-prj
+# epidemiology-model
 
 This model simulates the spread of the disease on a map of New York City. Our map is a 150x150 grid.
 The model is based on the so-called SRI model. At any time step, each cell on the map can be in one of three states: 
